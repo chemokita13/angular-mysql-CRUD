@@ -1,12 +1,9 @@
-import mysql from "mysql2";
+import mysql from "mysql2/promise";
 
 import keys from "./keys";
 
 const pool = mysql.createPool(keys.database);
 
-pool.getConnection(function (err, conn) {
-    console.log("DB is conected");
-    // Connection is automatically released when query resolves
-});
+console.log("DB sucessfully connected");
 
 export default pool;
