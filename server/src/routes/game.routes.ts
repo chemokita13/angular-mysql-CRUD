@@ -11,7 +11,12 @@ class gameRouter {
     }
 
     config(): void {
-        this.router.get("/", gameController.index);
+        // create the routes
+        this.router.get("/", gameController.getAll);
+        this.router.get("/:id", gameController.getOne);
+        this.router.post("/", gameController.newItem);
+        this.router.delete("/:id", gameController.deleteItem);
+        this.router.put("/:id", gameController.updateItem);
     }
 }
 

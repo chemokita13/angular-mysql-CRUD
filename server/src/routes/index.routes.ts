@@ -11,6 +11,7 @@ class IndexRoutes {
     }
 
     config(): void {
+        // create the routes
         this.router.get("/", indexController.index);
     }
 }
