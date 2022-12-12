@@ -4,6 +4,8 @@ import { HttpClient } from "@angular/common/http";
 
 import { Game } from "../models/Game"; // Game interface
 
+import { Observable } from "rxjs";
+
 @Injectable({
     providedIn: "root",
 })
@@ -32,8 +34,8 @@ export class GamesService {
         return this.http.delete(this.API_URI + "/game/" + id);
     }
 
-    public updateGame(id: string, updatedGame: Game) {
+    public updateGame(id: string | number, updatedGame: Game) {
         // Updates a game
-        return this.http.put(this.API_URI + "/game/" + id, updatedGame);
+        return this.http.put(`${this.API_URI}/game/${id}`, updatedGame);
     }
 }
