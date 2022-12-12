@@ -10,6 +10,7 @@ import { GameListComponent } from "./components/game-list/game-list.component";
 import { HttpClientModule } from "@angular/common/http";
 
 import { GamesService } from "./services/games.service";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,7 @@ import { GamesService } from "./services/games.service";
         GameFormComponent,
         GameListComponent,
     ],
-    imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+    imports: [BrowserModule, AppRoutingModule, HttpClientModule, FontAwesomeModule],
     providers: [GamesService],
     bootstrap: [AppComponent],
 })
