@@ -1,9 +1,11 @@
 <div class="grid grid-cols-3 gap-10">
     <div
         *ngFor="let game of storedGames"
-        class="border border-black rounded-md h-[25vh] bg-teal-700 text-teal-50"
+        class="border border-black rounded-md h-[30vh]n min-w-[30vh] p-5 flex flex-col items-center bg-teal-700 text-teal-50"
     >
-        <div class="pt-5 pb-2 border-b-2 flex justify-between items-center">
+        <div
+            class="pt-5 pb-2 border-b-2 flex justify-between items-center w-full"
+        >
             <button class="rounded-full bg-teal-600 ml-2 w-12 aspect-square">
                 <fa-icon [icon]="faTrash"></fa-icon>
             </button>
@@ -14,7 +16,10 @@
                 <fa-icon [icon]="faPencil"></fa-icon>
             </button>
         </div>
-        <p class="p-5 first-letter:uppercase">{{ game.description }}</p>
-        <img src="{{ game.img }}" />
+        <p class="p-5 first-letter:uppercase w-full">{{ game.description }}</p>
+        <img
+            class="border border-teal-50 w-2/3 h-2/3 aspect-auto"
+            src="{{ game.img }}"
+        />
     </div>
 </div>
