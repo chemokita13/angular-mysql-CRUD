@@ -38,7 +38,7 @@ export class GameFormComponent {
                 next: (res) => {
                     // it have to be an edit form not create form
                     this.edit = true;
-                    // res is an object like [{game}], THIS HAVE TO BE AN ARRAY NOT AND OBJECT and i cant do something like res[0]
+                    // res is an object like [{game}], THIS HAVE TO BE AN ARRAY NOT AN OBJECT and i cant do something like res[0]
                     ///console.log(Object.values(res)[0], typeof [res]);
                     this.game = { ...Object.values(res)[0] };
                 },
@@ -62,7 +62,6 @@ export class GameFormComponent {
     }
 
     updateGame() {
-        console.log(this.game.id);
         delete this.game.created_at;
         this.game.id &&
             this.gamesService.updateGame(this.game.id, this.game).subscribe({
