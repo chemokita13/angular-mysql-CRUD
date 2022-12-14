@@ -23,12 +23,23 @@ export class GameListComponent {
 
     ngOnInit() {
         // on start page
+        this.getGames();
+    }
+
+    getGames() {
         this.gamesService.getGames().subscribe({
             next: (res) => {
                 this.storedGames = res;
                 console.log(this.storedGames);
             },
             error: (err) => console.log(err),
+        });
+    }
+
+    deleteGame(id: string) {
+        this.gamesService.deleteGame(id).subscribe({
+            next: (res) => this.getGames(),
+            error: (err) => console.error(err),
         });
     }
 }

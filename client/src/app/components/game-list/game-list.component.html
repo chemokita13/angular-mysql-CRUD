@@ -6,7 +6,11 @@
         <div
             class="pt-5 pb-2 border-b-2 flex justify-between items-center w-full"
         >
-            <button class="rounded-full bg-teal-600 ml-2 w-12 aspect-square">
+            <button
+                (click)="deleteGame(game.id)"
+                class="rounded-full bg-teal-600 ml-2 w-12 aspect-square"
+            >
+                <!-- > (click)="deleteGame({{game.id}})" -->
                 <fa-icon [icon]="faTrash"></fa-icon>
             </button>
             <h1 class="text-center first-letter:uppercase pl-5 p-3">
