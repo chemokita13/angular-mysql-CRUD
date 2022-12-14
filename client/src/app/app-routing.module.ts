@@ -18,6 +18,10 @@ const routes: Routes = [
         path: "games/add",
         component: GameFormComponent,
     },
+    {
+        path: "games/edit/:id",
+        component: GameFormComponent,
+    },
 ];
 
 @NgModule({

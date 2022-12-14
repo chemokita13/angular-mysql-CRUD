@@ -2,8 +2,7 @@ import { Component } from "@angular/core";
 
 import { GamesService } from "../../services/games.service";
 
-// import game interface
-import { Game } from "../../models/Game";
+import { Router } from "@angular/router";
 
 import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 
@@ -19,7 +18,7 @@ export class GameListComponent {
     faPencil = faPencil;
     faTrash = faTrash;
 
-    constructor(private gamesService: GamesService) {}
+    constructor(private gamesService: GamesService, private router: Router) {}
 
     ngOnInit() {
         // on start page
@@ -41,5 +40,9 @@ export class GameListComponent {
             next: (res) => this.getGames(),
             error: (err) => console.error(err),
         });
+    }
+
+    editGame(id: string) {
+        this.router.navigate([`games/edit/${id}`]);
     }
 }

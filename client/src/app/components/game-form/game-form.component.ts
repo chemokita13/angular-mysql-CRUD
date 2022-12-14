@@ -4,7 +4,7 @@ import { Game } from "src/app/models/Game";
 import { GamesService } from "src/app/services/games.service";
 
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
     selector: "app-game-form",
@@ -22,7 +22,30 @@ export class GameFormComponent {
         img: "",
         created_at: undefined,
     };
-    constructor(private gamesService: GamesService, private router: Router) {}
+
+    edit: Boolean = false; // The default form have to create a game, but sometimes have to edit a game.
+
+    constructor(
+        private gamesService: GamesService,
+        private router: Router,
+        private activatedRoute: ActivatedRoute
+    ) {}
+
+    ngOnInit() {
+        const params = this.activatedRoute.snapshot.params;
+        if (params["id"]) {
+            this.gamesService.getGame(params["id"]).subscribe({
+                next: (res) => {
+                    // it have to be an edit form not create form
+                    this.edit = true;
+                    // res is an object like [{game}], THIS HAVE TO BE AN ARRAY NOT AND OBJECT and i cant do something like res[0]
+                    ///console.log(Object.values(res)[0], typeof [res]);
+                    this.game = { ...Object.values(res)[0] };
+                },
+                error: (err) => console.error(err),
+            });
+        }
+    }
 
     saveNewGame() {
         // That params are created by back-end
@@ -36,5 +59,18 @@ export class GameFormComponent {
             },
             error: (err) => console.error(err),
         });
+    }
+
+    updateGame() {
+        console.log(this.game.id);
+        delete this.game.created_at;
+        this.game.id &&
+            this.gamesService.updateGame(this.game.id, this.game).subscribe({
+                next: (res) => {
+                    console.log(res);
+                    this.router.navigate(["/games"]);
+                },
+                error: (err) => console.error(err),
+            });
     }
 }

@@ -16,7 +16,10 @@
             <h1 class="text-center first-letter:uppercase pl-5 p-3">
                 {{ game.title }}
             </h1>
-            <button class="rounded-full bg-teal-600 mr-2 w-12 aspect-square">
+            <button
+                class="rounded-full bg-teal-600 mr-2 w-12 aspect-square"
+                (click)="editGame(game.id)"
+            >
                 <fa-icon [icon]="faPencil"></fa-icon>
             </button>
         </div>

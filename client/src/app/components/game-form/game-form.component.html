@@ -22,11 +22,11 @@
             placeholder="Image url"
         />
         <button
-            (click)="saveNewGame()"
+            (click)="edit ? updateGame() : saveNewGame()"
             type="submit"
             class="bg-teal-100 w-80 m-1 rounded-full h-10 text-teal-500 font-bold transition-transform hover:scale-105 hover:text-teal-100 hover:bg-teal-500"
         >
-            Add game
+            {{ edit ? "Edit" : "Save" }}
         </button>
     </form>
 
