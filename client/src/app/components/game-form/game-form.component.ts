@@ -4,6 +4,7 @@ import { Game } from "src/app/models/Game";
 import { GamesService } from "src/app/services/games.service";
 
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "app-game-form",
@@ -21,7 +22,7 @@ export class GameFormComponent {
         img: "",
         created_at: undefined,
     };
-    constructor(private gamesService: GamesService) {}
+    constructor(private gamesService: GamesService, private router: Router) {}
 
     saveNewGame() {
         // That params are created by back-end
@@ -31,6 +32,7 @@ export class GameFormComponent {
         this.gamesService.saveGame(this.game).subscribe({
             next: (res) => {
                 console.log(res);
+                this.router.navigate(["/games"]);
             },
             error: (err) => console.error(err),
         });
